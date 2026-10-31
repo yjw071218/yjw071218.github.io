@@ -1,4 +1,1 @@
-# Sumdoku app-ads.txt
-# AdMob 계정을 만든 뒤, 아래 줄의 앞 '#'을 지우고 pub-0000000000000000 을
-# AdMob > 설정 > 계정 정보의 '게시자 ID'로 바꾸세요.
-# google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
+google.com, pub-6503579313389668, DIRECT, f08c47fec0942fa0
