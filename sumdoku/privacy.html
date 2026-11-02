@@ -10,7 +10,7 @@
 @media (prefers-color-scheme:dark){:root{--ink:#e2e8f0;--muted:#94a3b8;--line:#1e293b;--accent:#60a5fa;--soft:#0f1d33;--bg:#0b1120;--warn:#3a2a06;--warnink:#fcd34d}}
 *{box-sizing:border-box}
 body{margin:0;font-family:system-ui,-apple-system,"Segoe UI","Apple SD Gothic Neo","Noto Sans KR",sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;font-size:16px}
-main{max-width:780px;margin:0 auto;padding:44px 22px 64px}
+main{max-width:800px;margin:0 auto;padding:44px 22px 64px}
 header{border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:8px}
 h1{font-size:28px;margin:0 0 4px}h2{font-size:20px;margin:36px 0 10px;padding-top:6px}h3{font-size:16px;margin:20px 0 6px}
 p,li{color:var(--ink)}.muted{color:var(--muted);font-size:14px}
@@ -30,7 +30,7 @@ hr{border:0;border-top:2px dashed var(--line);margin:56px 0}
 <main>
 <header>
   <h1>Sumdoku 개인정보처리방침</h1>
-  <p class="muted">시행일: 2026년 10월 15일 · 적용 대상: Google Play에서 배포하는 Sumdoku(썸도쿠) Android 앱</p>
+  <p class="muted">시행일: 2026년 11월 2일 · 적용 대상: Google Play에서 배포하는 Sumdoku(썸도쿠) Android 앱 v2.8 이상</p>
   <nav class="lang"><a href="#ko">한국어</a><a href="#en">English</a></nav>
 </header>
 
@@ -38,119 +38,184 @@ hr{border:0;border-top:2px dashed var(--line);margin:56px 0}
 <div class="summary">
   <strong>요약</strong>
   <ul>
-    <li>개발자는 <strong>회원가입·로그인을 받지 않으며</strong>, 이름·이메일·연락처를 수집하지 않습니다.</li>
-    <li>게임 기록과 설정은 <strong>기기 안에만 저장</strong>되고 개발자 서버로 전송되지 않습니다. 개발자는 별도 서버를 운영하지 않습니다.</li>
-    <li>광고는 <strong>Google AdMob</strong>이 제공하며, 광고 표시와 측정을 위해 광고 ID 등 기기 정보를 처리합니다.</li>
-    <li>'광고 제거' 결제는 <strong>Google Play</strong>가 처리하며, 개발자는 카드 등 결제 정보를 받지 않습니다.</li>
+    <li>개발자는 별도 회원가입을 받지 않습니다. 계정 기능은 <strong>Google Play 게임즈</strong> 로그인을 사용하며, 개발자는 이메일·실명·연락처를 받지 않습니다.</li>
+    <li>게임 기록과 설정은 기본적으로 <strong>기기 안에 저장</strong>됩니다. 클라우드 저장·일일 도전 동기화·업적·리더보드는 Google Play 게임즈를 통해 처리됩니다.</li>
+    <li>개발자는 <strong>Cloudflare Workers 기반의 작은 서버</strong>를 운영합니다. 이 서버는 온라인 매칭 중계, 배틀 랭킹(닉네임·RP·경기 수), 버그·번역 신고와 익명 오류 보고, 연결 통계에만 쓰입니다.</li>
+    <li>온라인 배틀은 상대 기기와 <strong>직접(P2P) 연결</strong>되며, 연결을 위해 IP 주소가 상대와 매칭·연결 보조 서버에 전달될 수 있습니다.</li>
+    <li>광고는 <strong>Google AdMob</strong>, 결제는 <strong>Google Play</strong>가 처리합니다. 개발자는 카드 등 결제 정보를 받지 않습니다.</li>
   </ul>
 </div>
 
-<h2>1. 기기 안에만 저장되는 정보</h2>
-<p>다음 정보는 앱이 기기의 저장 공간에만 보관합니다. 개발자에게 전송되지 않으며, 앱을 삭제하거나 앱 데이터를 지우면 함께 삭제됩니다.</p>
+<h2>1. 기기 안에 저장되는 정보</h2>
+<p>다음 정보는 기기의 앱 저장 공간에 보관하며, 앱을 삭제하거나 앱 데이터를 지우면 함께 삭제됩니다.</p>
 <ul>
-  <li>진행 중인 게임, 일일 도전 기록, 통계(게임 수·승률·연승·클리어 시간·점수), 리플레이, 업적</li>
-  <li>언어·테마·소리·진동 등 설정, 메모장에 적은 내용</li>
-  <li>'광고 제거' 구매 여부</li>
+  <li>진행 중인 게임, 일일 도전 기록, 통계(게임 수·승률·연승·클리어 시간·점수), 리플레이, 업적, 힌트 기록</li>
+  <li>배틀 티어·RP·전적, 해금한 티어 보상과 장착 상태, 닉네임</li>
+  <li>언어·테마·소리·배경음·진동 등 설정, 메모장 내용</li>
+  <li>광고 제거 구매 상태, 최근 앱 오류 기록(최대 8건, 오류 보고용)</li>
 </ul>
 
-<h2>2. 같은 Wi-Fi 1:1 배틀</h2>
-<p>배틀은 인터넷 서버를 거치지 않고, 같은 Wi-Fi(로컬 네트워크)에 연결된 두 기기가 직접 통신합니다. 방을 만든 기기 안에서 작은 배틀 서버가 실행됩니다.</p>
+<h2>2. Google Play 게임즈 (로그인 · 클라우드 저장 · 업적 · 리더보드)</h2>
 <ul>
-  <li><strong>주고받는 정보:</strong> 퍼즐, 게임 규칙, 진행 상황(채운 칸·점수·실수 횟수·판 상태·메모), 채팅 메시지와 이모지, 4자리 방 코드, 기기의 로컬 네트워크 IP 주소</li>
-  <li><strong>보관:</strong> 이 정보는 경기 중 방장 기기의 메모리에만 있으며, 방을 닫거나 앱을 종료하면 사라집니다. 리플레이 기록은 각 기기에 저장됩니다.</li>
-  <li>채팅에는 개인정보를 적지 않도록 주의해 주세요. 상대 기기에 그대로 표시됩니다.</li>
+  <li>Play판은 Google Play 게임즈 v2로 로그인합니다. 앱은 Google이 제공하는 <strong>플레이어 ID와 표시 이름</strong>을 받아 계정 확인, 기본 닉네임, 랭킹 식별에 사용합니다. 이메일 주소는 받지 않습니다.</li>
+  <li><strong>클라우드 저장</strong>: 사용자가 저장을 선택하면 진행 중 게임, 일일 도전, 통계, 업적, 리플레이, 메모장과 게임 설정을 Google Play 게임즈 저장 게임 서비스에 저장합니다. 언어와 구매 권한은 저장본에 포함하지 않습니다. 복원 전 기존 데이터는 기기에 백업합니다.</li>
+  <li><strong>계정 동기화</strong>: 일일 도전 완료 날짜와 배틀 랭크 정보는 같은 계정을 쓰는 여러 기기에서 같게 보이도록 Play 게임즈 저장 공간에 자동으로 합쳐 저장합니다.</li>
+  <li><strong>업적·리더보드</strong>: 해금한 업적과 기록 점수가 Google Play 게임즈에 전송됩니다.</li>
+  <li>클라우드 데이터는 Play 게임즈 앱 또는 Google 계정 설정에서 관리·삭제할 수 있으며, 앱 삭제만으로는 삭제되지 않습니다. 계정 정보는 <a href="https://policies.google.com/privacy">Google 개인정보처리방침</a>에 따라 Google이 처리합니다.</li>
 </ul>
 
-<h2>3. 광고 (Google AdMob)</h2>
-<p>무료 이용을 위해 Google LLC의 AdMob으로 화면 하단 배너 광고와 게임 결과 화면의 전면 광고를 표시합니다. 광고 표시, 빈도 제한, 부정 클릭 방지, 성과 측정을 위해 Google이 다음 정보를 수집·처리할 수 있습니다.</p>
+<h2>3. 온라인 1:1 배틀</h2>
+<p>배틀(랜덤 매칭·경쟁전·일반전·방 번호 대전)은 두 기기가 <strong>WebRTC로 직접 연결</strong>해 진행하며, 경기 데이터는 개발자 서버에 저장되지 않습니다.</p>
+<table>
+  <tr><th>단계</th><th>처리 주체</th><th>전달되는 정보</th></tr>
+  <tr><td>상대 찾기</td><td>개발자의 매칭 서버(Cloudflare Workers)와 공개 WebTorrent 트래커, Mainline DHT</td><td>매칭 구역·모드·난이도로 만든 해시값, 무작위 연결 ID, 연결 제안(SDP, 기기의 공인·사설 IP 주소 포함), 접속 IP 주소</td></tr>
+  <tr><td>연결 보조</td><td>STUN 서버(Google·Cloudflare·Twilio), Cloudflare TURN 중계</td><td>IP 주소·포트. 직접 연결이 어려울 때만 TURN이 암호화된 경기 데이터를 중계합니다.</td></tr>
+  <tr><td>공개 트래커 목록</td><td>jsDelivr CDN</td><td>목록 요청 시 IP 주소</td></tr>
+  <tr><td>경기</td><td>상대 기기</td><td>닉네임, 국가(국기), 티어·RP·장착 보상, 퍼즐·규칙, 진행 상황(칸·점수·실수·메모), 채팅과 이모지, IP 주소</td></tr>
+</table>
+<ul>
+  <li>국기는 Google Play 결제 국가 코드를 사용하고, 받을 수 없으면 기기 언어 지역으로 대신합니다.</li>
+  <li>매칭 서버는 접속 정보를 메모리에서만 다루며 접속 하나당 최대 5분 뒤 끊고 저장하지 않습니다. 남용 방지를 위해 IP별 동시 접속 수만 확인합니다.</li>
+  <li>연결 품질 개선을 위해 연결 방식(직접·중계, IPv4/IPv6, 네트워크 종류)의 <strong>개인을 식별할 수 없는 집계 통계</strong>만 서버에 보냅니다.</li>
+  <li>경쟁전 진행 중에는 공정성을 위해 화면 캡처·녹화를 막습니다.</li>
+  <li>채팅에는 개인정보를 적지 마세요. 상대 화면에 그대로 표시됩니다.</li>
+</ul>
+
+<h2>4. 배틀 랭킹</h2>
+<p>경쟁전 랭킹을 표시하기 위해 Play 게임즈에 로그인한 사용자의 다음 정보를 개발자 서버에 저장합니다: <strong>Play 게임즈 플레이어 ID, 닉네임(이전에 쓴 이름 포함), 난이도별 RP와 경기 수</strong>. 이 정보는 앱의 랭킹 화면에서 다른 사용자에게 순위와 닉네임으로 표시됩니다. 삭제를 원하면 아래 문의처로 플레이어 닉네임과 함께 요청해 주세요.</p>
+
+<h2>5. 버그·번역 신고와 익명 오류 보고</h2>
+<ul>
+  <li><strong>직접 신고</strong>: 신고 창에서 보낸 내용, 선택한 경우 답변용 이메일, 앱 버전·배포판·언어·기기 모델, (선택 시) 진단 정보(화면 크기, 현재 화면·난이도·모드, 최근 오류)를 서버에 저장합니다.</li>
+  <li><strong>번역 신고</strong>: 신고한 문구와 수정 제안, 언어, 화면 위치를 저장합니다.</li>
+  <li><strong>자동 오류 보고</strong>: 앱 오류가 나면 오류 메시지·스택, 앱 버전, 기기 모델, 화면 정보를 이름·계정 정보 없이 보냅니다(실행당 최대 5건). 신고 창의 <strong>'앱 오류를 자동으로 익명 보고'</strong>를 끄면 보내지 않습니다.</li>
+  <li>남용 방지를 위해 IP 주소로 하루 신고 횟수를 확인하며, 이 기록은 날짜가 바뀌면 초기화됩니다. 신고 내용은 처리 후 최대 3,000건 범위에서 오래된 처리 완료 건부터 삭제합니다.</li>
+</ul>
+
+<h2>6. 광고 (Google AdMob)</h2>
+<p>무료 이용을 위해 Google LLC의 AdMob으로 하단 배너, 결과 화면 전면 광고, 이어 하기 시 복귀 광고, 그리고 사용자가 선택하는 보상형 광고(부활·힌트)를 표시합니다. Google은 다음 정보를 수집·처리할 수 있습니다.</p>
 <table>
   <tr><th>항목</th><th>예시</th><th>목적</th></tr>
   <tr><td>기기 식별자</td><td>Android 광고 ID</td><td>광고 표시·측정, (동의한 경우) 맞춤 광고</td></tr>
   <tr><td>기기·앱 정보</td><td>기기 모델, OS 버전, 앱 버전, 언어</td><td>광고 표시, 오류 방지</td></tr>
   <tr><td>네트워크 정보</td><td>IP 주소(대략적 위치 추정 포함)</td><td>광고 표시, 부정 방지</td></tr>
-  <tr><td>광고 상호작용</td><td>광고 노출·클릭</td><td>측정, 부정 클릭 방지</td></tr>
+  <tr><td>광고 상호작용</td><td>광고 노출·클릭·보상 지급</td><td>측정, 부정 클릭 방지</td></tr>
 </table>
 <ul>
-  <li>유럽경제지역(EEA)·영국·스위스 등 동의가 필요한 지역에서는 앱 실행 시 Google의 동의 화면(UMP)을 먼저 보여 주고, 선택에 따라 맞춤 또는 비맞춤 광고를 표시합니다. 동의는 앱 <strong>설정 → 개인정보 및 광고 설정</strong>에서 언제든 바꿀 수 있습니다(해당 지역에서만 표시).</li>
-  <li>기기의 <strong>설정 → 개인정보 보호 → 광고</strong>에서 광고 ID를 재설정하거나 삭제해 맞춤 광고를 제한할 수 있습니다.</li>
-  <li>Google의 정보 처리 방식: <a href="https://policies.google.com/technologies/partner-sites">Google 파트너 사이트·앱 정보 처리</a>, <a href="https://policies.google.com/privacy">Google 개인정보처리방침</a></li>
+  <li>유럽경제지역(EEA)·영국·스위스 등 동의가 필요한 지역에서는 Google의 동의 화면(UMP)을 먼저 보여 주고, 선택에 따라 맞춤 또는 비맞춤 광고를 표시합니다. 동의는 <strong>설정 → 개인정보 및 광고 설정</strong>에서 바꿀 수 있습니다.</li>
+  <li>기기의 <strong>설정 → 개인정보 보호 → 광고</strong>에서 광고 ID를 재설정하거나 삭제할 수 있습니다.</li>
+  <li><a href="https://policies.google.com/technologies/partner-sites">Google 파트너 사이트·앱 정보 처리</a>, <a href="https://policies.google.com/privacy">Google 개인정보처리방침</a></li>
 </ul>
 
-<h2>4. 광고 제거 결제 (Google Play 결제)</h2>
+<h2>7. 광고 제거 결제 (Google Play 결제)</h2>
 <ul>
-  <li>'광고 제거'는 한 번 결제하는 상품이며, 결제는 Google Play가 처리합니다. 개발자는 이름·카드번호 등 결제 정보를 받지 않습니다.</li>
-  <li>앱은 구매 여부를 확인하기 위해 Google Play로부터 구매 상태와 구매 토큰만 전달받아 기기에 저장합니다.</li>
-  <li>구매 후에는 광고를 요청하지 않습니다. 재설치·기기 변경 시 같은 Google 계정으로 <strong>설정 → 구매 복원</strong>을 누르면 다시 적용됩니다.</li>
+  <li>광고 제거는 <strong>부분</strong>(배너·전면·복귀 광고 제거), <strong>전체</strong>(보상형 광고 포함 제거), 부분에서 전체로의 <strong>업그레이드</strong> 상품이 있는 일회성 구매입니다. 기존 '광고 제거' 구매자는 전체 제거로 인정합니다.</li>
+  <li>결제는 Google Play가 처리하며, 개발자는 이름·카드번호 등 결제 정보를 받지 않습니다. 앱은 구매 상태와 구매 토큰만 받아 기기에 저장합니다.</li>
+  <li>재설치·기기 변경 시 같은 Google 계정으로 <strong>설정 → 구매 복원</strong>을 누르면 다시 적용됩니다.</li>
 </ul>
 
-<h2>5. 앱이 사용하는 권한</h2>
+<h2>8. 앱이 사용하는 권한</h2>
 <table>
   <tr><th>권한</th><th>용도</th></tr>
-  <tr><td>인터넷, 네트워크·Wi-Fi 상태 확인</td><td>광고·결제 통신, 배틀 연결, 상태바의 Wi-Fi·인터넷 표시, 모바일 데이터 경고</td></tr>
-  <tr><td>Wi-Fi 멀티캐스트</td><td>같은 Wi-Fi에서 4자리 코드로 배틀 방 찾기</td></tr>
-  <tr><td>절전 해제 방지(WAKE_LOCK)</td><td>배틀 방이 열려 있는 동안 Wi-Fi 응답 지연 방지</td></tr>
+  <tr><td>인터넷, 네트워크·Wi-Fi 상태 확인</td><td>배틀 연결, 랭킹·신고, 광고·결제, Play 게임즈, 상태바의 네트워크 표시</td></tr>
+  <tr><td>Wi-Fi 멀티캐스트</td><td>같은 네트워크의 배틀 상대 탐색</td></tr>
+  <tr><td>절전 해제 방지(WAKE_LOCK)</td><td>배틀 중 연결 지연 방지</td></tr>
   <tr><td>진동</td><td>입력·오답 진동 효과</td></tr>
-  <tr><td>광고 ID(AD_ID) 등</td><td>Google AdMob 광고(위 3항)</td></tr>
-  <tr><td>결제(BILLING)</td><td>광고 제거 구매(위 4항)</td></tr>
+  <tr><td>광고 ID(AD_ID)</td><td>Google AdMob 광고(6항)</td></tr>
+  <tr><td>결제(BILLING)</td><td>광고 제거 구매(7항)</td></tr>
 </table>
 <p class="muted">위치, 연락처, 사진, 카메라, 마이크 권한은 요청하지 않습니다.</p>
 
-<h2>6. 아동</h2>
+<h2>9. 데이터 처리 위탁 · 국외 이전</h2>
+<p>개발자 서버는 Cloudflare, Inc.(미국)의 Workers·Durable Objects에서 운영되며, 데이터는 Cloudflare 글로벌 네트워크에 저장·처리될 수 있습니다. Google 서비스(Play 게임즈, AdMob, Play 결제)의 데이터는 Google LLC(미국)가 처리합니다. 이전 항목은 위 2~6항의 정보이며, 서비스 이용 시 네트워크를 통해 전송됩니다.</p>
+
+<h2>10. 아동</h2>
 <p>이 앱은 만 13세 미만 아동을 대상으로 하지 않으며, 개발자는 아동의 개인정보를 의도적으로 수집하지 않습니다.</p>
 
-<h2>7. 보관 · 삭제 · 이용자의 권리</h2>
+<h2>11. 보관 · 삭제 · 이용자의 권리</h2>
 <ul>
-  <li>개발자는 이용자 개인정보를 보관하지 않으므로 별도로 열람·삭제할 데이터가 없습니다. 기기의 게임 기록은 앱 삭제 또는 <strong>설정 → 앱 → Sumdoku → 저장공간 → 데이터 삭제</strong>로 지울 수 있습니다.</li>
-  <li>Google이 처리하는 광고 정보에 대한 권리 행사는 <a href="https://myadcenter.google.com/">Google 내 광고 센터</a>와 Google 개인정보처리방침의 안내를 이용하세요.</li>
+  <li>기기 기록은 앱 삭제 또는 <strong>설정 → 앱 → Sumdoku → 저장공간 → 데이터 삭제</strong>로 지울 수 있습니다.</li>
+  <li>랭킹 정보와 신고 내용의 열람·삭제는 아래 문의처로 요청해 주세요. 확인 후 지체 없이 처리합니다.</li>
+  <li>Play 게임즈 데이터는 Play 게임즈 설정에서, 광고 정보는 <a href="https://myadcenter.google.com/">Google 내 광고 센터</a>에서 관리할 수 있습니다.</li>
 </ul>
 
-<h2>8. 변경 · 문의</h2>
-<p>이 방침이 바뀌면 이 페이지에 시행일과 함께 게시합니다. 문의는 <a href="https://github.com/yjw071218/sumdoku/issues">GitHub Issues</a>로 남겨 주세요.</p>
+<h2>12. 변경 · 문의</h2>
+<p>이 방침이 바뀌면 이 페이지에 시행일과 함께 게시합니다. 문의: <a href="https://github.com/yjw071218/sumdoku/issues">GitHub Issues</a> 또는 앱의 <strong>설정 → 버그 신고</strong>.</p>
 </section>
 
 <hr>
 
 <section id="en" lang="en">
 <h1>Sumdoku Privacy Policy</h1>
-<p class="muted">Effective: October 15, 2026 · Applies to: the Sumdoku Android app distributed on Google Play</p>
+<p class="muted">Effective: November 2, 2026 · Applies to: the Sumdoku Android app v2.8 and later distributed on Google Play</p>
 <div class="summary">
   <strong>Summary</strong>
   <ul>
-    <li>No sign-up or login. The developer does <strong>not collect</strong> your name, email, or contacts.</li>
-    <li>Game records and settings are <strong>stored only on your device</strong>. The developer runs no servers.</li>
-    <li>Ads are provided by <strong>Google AdMob</strong>, which processes device information such as the advertising ID.</li>
-    <li>The "Remove ads" purchase is processed by <strong>Google Play</strong>; the developer never receives payment details.</li>
+    <li>No separate sign-up. Account features use <strong>Google Play Games</strong> sign-in; the developer never receives your email, real name, or contacts.</li>
+    <li>Game records and settings are <strong>stored on your device</strong> by default. Cloud saves, daily-challenge sync, achievements, and leaderboards go through Google Play Games.</li>
+    <li>The developer runs a <strong>small server on Cloudflare Workers</strong>, used only for matchmaking, the battle ranking (nickname, RP, games played), bug/translation reports, anonymous error reports, and connection statistics.</li>
+    <li>Online battles connect <strong>directly (peer-to-peer)</strong>; your IP address may be shared with the opponent and with matchmaking/connection servers.</li>
+    <li>Ads are provided by <strong>Google AdMob</strong> and payments by <strong>Google Play</strong>; the developer never receives payment details.</li>
   </ul>
 </div>
 
-<h2>1. Data stored only on your device</h2>
-<p>Games in progress, daily challenge records, statistics, replays, achievements, settings, notepad contents, and whether you bought "Remove ads". This data is never sent to the developer and is deleted when you uninstall the app or clear its data.</p>
+<h2>1. Data stored on your device</h2>
+<p>Games in progress, daily challenges, statistics, replays, achievements, hint history, battle tier/RP/record, unlocked tier rewards, nickname, settings, notepad contents, purchase status, and up to 8 recent app errors. Deleted when you uninstall or clear app data.</p>
 
-<h2>2. Same Wi-Fi 1:1 battles</h2>
-<p>Battles do not use internet servers. Two devices on the same local network communicate directly; a small battle server runs on the host's device. Exchanged data: puzzle, rules, progress (filled cells, score, mistakes, board state, notes), chat messages and emoji, the 4-digit room code, and local network IP addresses. This data exists only in the host device's memory during the match and is discarded when the room closes. Please don't share personal information in chat.</p>
-
-<h2>3. Advertising (Google AdMob)</h2>
-<p>The app shows a bottom banner and full-screen ads on game result screens through AdMob by Google LLC. Google may collect the Android advertising ID, device and app information (model, OS version, app version, language), IP address (including approximate location), and ad interactions to serve and measure ads, cap frequency, and prevent fraud.</p>
+<h2>2. Google Play Games</h2>
 <ul>
-  <li>Where consent is required (e.g. EEA, UK, Switzerland), Google's consent form (UMP) is shown first, and personalized or non-personalized ads are served based on your choice. You can change it any time under <strong>Settings → Privacy &amp; ad settings</strong> (shown in those regions).</li>
-  <li>You can reset or delete your advertising ID in your device settings.</li>
+  <li>The app receives your <strong>player ID and display name</strong> from Google Play Games for account confirmation, default nickname, and ranking. It does not receive your email.</li>
+  <li><strong>Cloud saves</strong>: when you choose to save, progress, daily challenges, statistics, achievements, replays, notepad and settings are stored in Play Games Saved Games (language and purchase entitlements excluded). A local backup is kept before restoring.</li>
+  <li><strong>Account sync</strong>: daily-challenge completion dates and battle rank data are merged automatically in Play Games storage so every device on the same account matches.</li>
+  <li><strong>Achievements and leaderboards</strong> are submitted to Google Play Games.</li>
+  <li>Manage or delete cloud data in Play Games or your Google account; uninstalling does not delete it. See the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.</li>
+</ul>
+
+<h2>3. Online 1:1 battles</h2>
+<p>Battles connect two devices <strong>directly via WebRTC</strong>; match data is not stored on the developer's server.</p>
+<ul>
+  <li><strong>Finding an opponent</strong>: the developer's matchmaking server (Cloudflare Workers), public WebTorrent trackers and the Mainline DHT receive a hash of zone/mode/difficulty, a random peer ID, connection offers (SDP, including public and local IP addresses), and your IP address. The tracker list is fetched from the jsDelivr CDN.</li>
+  <li><strong>Connection helpers</strong>: STUN servers (Google, Cloudflare, Twilio) see your IP address and port. Cloudflare TURN relays encrypted match data only when a direct connection fails.</li>
+  <li><strong>Shared with your opponent</strong>: nickname, country flag (Google Play billing country, or device locale), tier/RP/equipped rewards, puzzle and rules, progress, chat and emoji, and IP address.</li>
+  <li>The matchmaking server keeps connections in memory only (max. 5 minutes each) and does not store them. Only non-identifying aggregate connection statistics (direct/relay, IPv4/IPv6, network type) are recorded.</li>
+  <li>Screen capture is blocked during ranked matches. Please don't share personal information in chat.</li>
+</ul>
+
+<h2>4. Battle ranking</h2>
+<p>For signed-in players the server stores the <strong>Play Games player ID, nickname (including previous names), RP and games played per difficulty</strong>, shown to other players in the in-app ranking. Contact us to request deletion.</p>
+
+<h2>5. Bug and translation reports, anonymous error reports</h2>
+<ul>
+  <li><strong>Reports</strong> you send store your message, optional reply email, app version, distribution, language, device model and, if you allow it, diagnostics (screen size, current screen/difficulty/mode, recent errors). Translation reports store the text, your suggestion, language and location.</li>
+  <li><strong>Automatic error reports</strong> send the error message and stack, app version, device model and screen info without any name or account (max. 5 per session). Turn off <strong>"Automatically report app errors anonymously"</strong> in the report window to stop them.</li>
+  <li>IP addresses are used only to enforce daily limits and are reset daily. Reports are capped at 3,000 entries, oldest resolved first.</li>
+</ul>
+
+<h2>6. Advertising (Google AdMob)</h2>
+<p>The app shows a banner, full-screen ads on result screens, app-open ads when resuming a saved game, and optional rewarded ads (revive, hint) through AdMob by Google LLC. Google may collect the advertising ID, device and app information, IP address (including approximate location), and ad interactions to serve and measure ads and prevent fraud.</p>
+<ul>
+  <li>Where consent is required (e.g. EEA, UK, Switzerland), Google's consent form (UMP) is shown first; change it under <strong>Settings → Privacy &amp; ad settings</strong>.</li>
+  <li>You can reset or delete your advertising ID in device settings.</li>
   <li>See <a href="https://policies.google.com/technologies/partner-sites">How Google uses information from sites or apps that use its services</a> and the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.</li>
 </ul>
 
-<h2>4. Remove ads purchase (Google Play Billing)</h2>
-<p>"Remove ads" is a one-time purchase processed by Google Play. The app only receives the purchase status and token from Google Play and stores it on the device. After purchase, no ads are requested. Use <strong>Settings → Restore purchase</strong> with the same Google account after reinstalling or changing devices.</p>
+<h2>7. Remove ads purchase (Google Play Billing)</h2>
+<p>One-time products: <strong>Basic</strong> (removes banner, interstitial and app-open ads), <strong>Full</strong> (also removes rewarded ads), and an upgrade from Basic to Full. Earlier "Remove ads" purchases count as Full. Google Play processes payment; the app only receives and stores the purchase status and token. Use <strong>Settings → Restore purchase</strong> after reinstalling.</p>
 
-<h2>5. Permissions</h2>
-<p>Internet and network/Wi-Fi state (ads, payments, battles, status bar indicators, mobile data warning), Wi-Fi multicast (finding battle rooms by code), wake lock (keeping Wi-Fi responsive while a room is open), vibration (feedback), advertising ID (AdMob), and billing (Remove ads). The app does not request location, contacts, photos, camera, or microphone access.</p>
+<h2>8. Permissions</h2>
+<p>Internet and network/Wi-Fi state (battles, ranking, reports, ads, payments, Play Games, status bar), Wi-Fi multicast (finding nearby battle peers), wake lock (keeping connections responsive during battles), vibration (feedback), advertising ID (AdMob), and billing (Remove ads). The app does not request location, contacts, photos, camera, or microphone access.</p>
 
-<h2>6. Children</h2>
+<h2>9. Processors and international transfers</h2>
+<p>The developer's server runs on Cloudflare, Inc. (USA) Workers and Durable Objects and may be processed across Cloudflare's global network. Google services are operated by Google LLC (USA).</p>
+
+<h2>10. Children</h2>
 <p>The app is not directed to children under 13, and the developer does not knowingly collect children's personal information.</p>
 
-<h2>7. Retention, deletion, and your rights</h2>
-<p>The developer stores no personal data. Delete on-device records by uninstalling the app or clearing its storage. For ad data processed by Google, use <a href="https://myadcenter.google.com/">My Ad Center</a> and the Google Privacy Policy.</p>
+<h2>11. Retention, deletion, and your rights</h2>
+<p>Delete on-device data by uninstalling or clearing app storage. To access or delete ranking or report data, contact us below. Manage Play Games data in Play Games settings and ad data in <a href="https://myadcenter.google.com/">My Ad Center</a>.</p>
 
-<h2>8. Changes and contact</h2>
-<p>Changes will be posted on this page with a new effective date. Contact: <a href="https://github.com/yjw071218/sumdoku/issues">GitHub Issues</a>.</p>
+<h2>12. Changes and contact</h2>
+<p>Changes will be posted on this page with a new effective date. Contact: <a href="https://github.com/yjw071218/sumdoku/issues">GitHub Issues</a> or <strong>Settings → Report a bug</strong> in the app.</p>
 </section>
 </main>
 </body>
